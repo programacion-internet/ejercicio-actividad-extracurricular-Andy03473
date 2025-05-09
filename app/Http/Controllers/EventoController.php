@@ -106,4 +106,17 @@ class EventoController extends Controller
     return view('eventos.mis_cursos', compact('misEventos'));
     }
 
+    public function inscribirse(Evento $evento)
+    {
+         // Lógica para inscribir al alumno (relacionar evento y usuario)
+            $evento->users()->attach(auth()->id());
+
+    // Opcional: enviar correo, etc.
+
+    // Redirigir con mensaje
+            return redirect()->route('eventos.inicio')->with('message', '¡Te has inscrito exitosamente!');
+    
+    }
+
+
 }

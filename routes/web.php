@@ -35,3 +35,4 @@ Route::post('/eventos/{evento}/inscribirse', [EventoController::class, 'inscribi
     ->middleware('auth')
     ->name('eventos.inscribirse');
 Route::get('/mis-cursos', [App\Http\Controllers\EventoController::class, 'misCursos'])->middleware('auth')->name('eventos.misCursos');
+Route::get('/mis-cursos', [EventoController::class, 'misCursos'])->name('eventos.mis_cursos');
