@@ -34,3 +34,4 @@ Route::delete('/archivos/{archivo}', [ArchivoController::class, 'destroy'])->mid
 Route::post('/eventos/{evento}/inscribirse', [EventoController::class, 'inscribirse'])
     ->middleware('auth')
     ->name('eventos.inscribirse');
+Route::get('/mis-cursos', [App\Http\Controllers\EventoController::class, 'misCursos'])->middleware('auth')->name('eventos.misCursos');

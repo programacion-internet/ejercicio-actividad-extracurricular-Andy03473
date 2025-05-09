@@ -98,21 +98,12 @@ class EventoController extends Controller
         return redirect()->route('eventos.index')->with('success', 'Evento eliminado exitosamente.');
     }
 
-    public function inscribirse(Evento $evento)
-{
-    $user = Auth::user();
+    public function misCursos()
+    {
+    // Obtener todos los eventos a los que el usuario está inscrito
+    $misEventos = auth()->user()->eventos()->with('archivos')->get();
 
-    // Verificar si ya está inscrito
-    if ($user->eventos->contains($evento->id)) {
-        return back()->with('message', 'Ya estás inscrito en este evento.');
+    return view('eventos.mis_cursos', compact('misEventos'));
     }
 
-    // Inscribir al usuario al evento
-    $user->eventos()->attach($evento->id);
-
-    // Enviar correo (opcional)
-    Mail::to($user->email)->send(new InscripcionEvento($evento));
-
-    return back()->with('message', '¡Te has inscrito exitosamente! Revisa tu correo.');
-}
 }

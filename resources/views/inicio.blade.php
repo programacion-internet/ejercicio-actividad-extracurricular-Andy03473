@@ -76,7 +76,10 @@
                                     </form>
                                 @endif
                             @else
-                                <p><a href="{{ route('login') }}">Inicia sesión</a> para inscribirte.</p>
+                                {{-- Mostrar botón para iniciar sesión cuando está deslogueado --}}
+                                <div class="alert alert-info mt-3 text-center">
+                                    <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">Inicia sesión para inscribirte</a>
+                                </div>
                             @endauth
                         </div>
                     </div>

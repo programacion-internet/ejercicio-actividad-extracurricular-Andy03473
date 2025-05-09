@@ -7,11 +7,14 @@ use App\Models\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests; // ✅ Ya estaba bien
 
+use App\Models\User;
 
 class ArchivoController extends Controller
 {
+    use AuthorizesRequests;  // ✅ ESTA LÍNEA ES CLAVE: ahora sí funciona el authorize()
+
     public function store(Request $request)
     {
         // Validar los datos recibidos
@@ -46,7 +49,7 @@ class ArchivoController extends Controller
     public function destroy(Archivo $archivo)
     {
         // Verifica permisos de autorización antes de eliminar
-        $this->autorize('delete', $archivo);
+        $this->authorize('delete', $archivo); // ✅ Ahora este método está habilitado correctamente
 
         // Eliminar el archivo físico
         Storage::delete($archivo->ruta);
