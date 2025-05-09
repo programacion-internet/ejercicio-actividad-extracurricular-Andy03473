@@ -16,14 +16,15 @@ class Archivo extends Model
         'ruta',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    // ✅ Relación inversa con Evento
     public function evento()
     {
-        return $this->belongsTo(Evento::class);
+        return $this->belongsTo(Evento::class, 'evento_id');
+    }
+
+    // ✅ Relación con User (opcional, pero útil)
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
-

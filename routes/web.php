@@ -4,6 +4,8 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\ArchivoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,3 +24,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/inicio', [EventoController::class, 'index'])->name('eventos.inicio');
+Route::post('/eventos/{evento}/inscribirse', [EventoController::class, 'inscribirse'])->middleware('auth')->name('eventos.inscribirse');
+
+Route::post('/archivos', [ArchivoController::class, 'store'])->middleware('auth')->name('archivos.store');
+Route::delete('/archivos/{archivo}', [ArchivoController::class, 'destroy'])->middleware('auth')->name('archivos.destroy');
+Route::post('/eventos/{evento}/inscribirse', [EventoController::class, 'inscribirse'])
+    ->middleware('auth')
+    ->name('eventos.inscribirse');

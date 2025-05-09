@@ -24,7 +24,7 @@ class ArchivoController extends Controller
         $evento = Evento::findOrFail($request->evento_id);
 
         // Verificar si el usuario está inscrito en el evento
-        if (!Auth::user()->eventos()->where('id', $evento->id)->exists()) {
+        if (!Auth::user()->eventos()->where('eventos.id', $evento->id)->exists()) {
             return back()->with('error', 'No puedes subir archivos a eventos en los que no estás inscrito.');
         }
 
@@ -46,7 +46,7 @@ class ArchivoController extends Controller
     public function destroy(Archivo $archivo)
     {
         // Verifica permisos de autorización antes de eliminar
-        $this->authorize('delete', $archivo);
+        $this->autorize('delete', $archivo);
 
         // Eliminar el archivo físico
         Storage::delete($archivo->ruta);
