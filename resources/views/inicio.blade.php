@@ -43,6 +43,15 @@
                                             ->exists();
                                     @endphp
 
+                                    @can('delete', $evento)
+                                        <form action="{{ route('eventos.destroy', $evento) }}" method="POST" class="mt-2">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar evento</button>
+                                        </form>
+                                    @endcan
+
+
                                     @if ($yaInscrito)
                                         {{-- Botón de inscrito --}}
                                         <button class="btn btn-success btn-sm mb-2" disabled>✅ Ya inscrito</button>
