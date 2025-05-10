@@ -21,7 +21,7 @@ class Evento extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'evento_user');
+        return $this->belongsToMany(\App\Models\User::class, 'evento_user', 'evento_id', 'user_id');
     }
 
     // ✅ Relación con archivos
@@ -29,4 +29,6 @@ class Evento extends Model
     {
         return $this->hasMany(Archivo::class); 
     }
+
+    
 }

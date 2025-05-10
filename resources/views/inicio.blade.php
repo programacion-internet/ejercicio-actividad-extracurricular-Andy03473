@@ -49,7 +49,10 @@
                                     @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Eliminar evento</button>
                                         </form>
-                                    @endcan
+
+                                        {{-- NUEVO BOTÓN para ver inscritos --}}
+                                        <a href="{{ route('eventos.show', $evento) }}" class="btn btn-info btn-sm mt-2">Ver inscritos</a>
+                                        @endcan
 
 
                                     @if ($yaInscrito)
@@ -87,10 +90,12 @@
 
                                     @else
                                         {{-- Botón para inscribirse --}}
-                                        <form action="{{ route('eventos.inscribirse', $evento) }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary btn-sm">Inscribirse</button>
-                                        </form>
+                                        @if (!Auth::user()->is_admin)
+                                            <form action="{{ route('eventos.inscribirse', $evento) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary btn-sm">Inscribirse</button>
+                                            </form>
+                                            @endif
                                     @endif
                                 @else
                                     {{-- Mostrar bonito mensaje cuando no está logueado --}}

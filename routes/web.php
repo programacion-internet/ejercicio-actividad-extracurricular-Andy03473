@@ -39,3 +39,5 @@ Route::get('/mis-cursos', [App\Http\Controllers\EventoController::class, 'misCur
 Route::get('/mis-cursos', [EventoController::class, 'misCursos'])->name('eventos.mis_cursos');
 Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
 Route::resource('eventos', EventoController::class);
+Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+

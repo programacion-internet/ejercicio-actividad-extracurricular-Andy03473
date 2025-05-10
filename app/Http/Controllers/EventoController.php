@@ -55,9 +55,13 @@ class EventoController extends Controller
      * Display the specified resource.
      */
     public function show(Evento $evento)
-    {
-        return view('eventos.show', compact('evento'));
-    }
+{
+    // Aquí se cargan los usuarios inscritos y los archivos del evento
+    $evento->load('users', 'archivos');
+
+    return view('eventos.show', compact('evento'));
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -117,6 +121,7 @@ class EventoController extends Controller
             return redirect()->route('eventos.inicio')->with('message', '¡Te has inscrito exitosamente!');
     
     }
+    
 
 
 }
