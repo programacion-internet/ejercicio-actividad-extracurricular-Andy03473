@@ -29,7 +29,7 @@ class EventoPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**
@@ -45,7 +45,7 @@ class EventoPolicy
      */
     public function delete(User $user, Evento $evento): bool
     {
-        return false;
+        return $user->is_admin;
     }
 
     /**

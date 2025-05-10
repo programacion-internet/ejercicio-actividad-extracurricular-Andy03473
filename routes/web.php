@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ArchivoController;
 
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -36,3 +37,5 @@ Route::post('/eventos/{evento}/inscribirse', [EventoController::class, 'inscribi
     ->name('eventos.inscribirse');
 Route::get('/mis-cursos', [App\Http\Controllers\EventoController::class, 'misCursos'])->middleware('auth')->name('eventos.misCursos');
 Route::get('/mis-cursos', [EventoController::class, 'misCursos'])->name('eventos.mis_cursos');
+Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
+Route::resource('eventos', EventoController::class);
