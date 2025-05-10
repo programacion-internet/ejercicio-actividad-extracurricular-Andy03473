@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use App\Models\Evento;
+
 
 class User extends Authenticatable
 {
@@ -61,6 +63,8 @@ class User extends Authenticatable
 
     public function eventos()
     {
-        return $this->belongsToMany(Evento::class, 'evento_user');
+        return $this->belongsToMany(\App\Models\Evento::class, 'evento_user', 'user_id', 'evento_id');
+        
     }
+
 }

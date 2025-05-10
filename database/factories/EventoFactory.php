@@ -2,22 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Models\Evento;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Evento>
- */
 class EventoFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Evento::class;
+
+    public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->sentence(3),
+            'descripcion' => $this->faker->paragraph,
+            'fecha' => $this->faker->dateTimeBetween('-1 month', '+2 months'), // fechas pasadas y futuras
         ];
     }
 }

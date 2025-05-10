@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evento extends Model
 {
-    /** @use HasFactory<\Database\Factories\EventoFactory> */
     use HasFactory;
+
     protected $fillable = [
         'nombre',
         'descripcion',
@@ -21,6 +21,14 @@ class Evento extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'evento_user');
+        return $this->belongsToMany(\App\Models\User::class, 'evento_user', 'evento_id', 'user_id');
     }
+
+    // ✅ Relación con archivos
+    public function archivos()
+    {
+        return $this->hasMany(Archivo::class); 
+    }
+
+    
 }
